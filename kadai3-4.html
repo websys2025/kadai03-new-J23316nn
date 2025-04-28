@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="urf-8">
+    <meta charset="utf-8">
     <title>演習課題3-4：自動販売機</title>
 </head>
 <body>
@@ -25,19 +25,28 @@
                 console.log("商品番号: " + item.id + ", 商品名: " + item.name + ", 金額: " + item.price + ", 在庫数: " + item.stock);
             }
 
-            console.log(""); // 空行を出す
+            console.log(""); // 空行
         }
 
         function buyItem(no) {
-            // ここに購入処理を書く！
-            showItemList(); // 商品一覧を表示
+            if (no < 1 || no > items.length) {
+                console.log(no + "は無効な商品番号です。番号は1～" + items.length + "で指定してください。");
+            } else {
+                let item = items[no - 1];
+                if (item.stock > 0) {
+                    console.log("商品番号: " + item.id + ", 商品名: " + item.name + "を購入します。");
+                    item.stock--;
+                } else {
+                    console.log("在庫がありません。");
+                }
+            }
+            showItemList();
         }
 
-        showItemList(); // 最初に商品一覧を表示
-        buyItem(3);      // 商品番号3を購入
-        buyItem(5);      // 商品番号5を購入
-        buyItem(5);      // 商品番号5をもう1回購入
+        showItemList(); 
+        buyItem(3);      
+        buyItem(5);      
+        buyItem(5);      
     </script>
 </body>
 </html>
-
